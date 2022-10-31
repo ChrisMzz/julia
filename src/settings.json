@@ -1,0 +1,7 @@
+{
+   "settings":
+   {
+       "display_settings" : {"N":300, "layers":20, "layering_factor":2, "cmap":"gnuplot_r"},
+       "julia_settings" : {"iter":20, "thresh":500, "order":2, "c":"-0.75+0.25j"}
+   }
+}
