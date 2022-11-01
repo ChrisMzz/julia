@@ -1,7 +1,7 @@
 @echo off
 title Compute Julia
 color 0b
-chcp 65001
+::chcp 65001
 
 echo Ce fichier va générer une image représentant un ensemble de Julia entre -1 et 1 sur l'axe x et entre -i et i sur l'axe y.
 echo Les paramètres seront :
@@ -39,8 +39,6 @@ echo }
 ) > src/settings.json
 
 cd src
-mkdir dump
 python julia_th.py
 robocopy dump ../images /mov
-rmdir dump
 
