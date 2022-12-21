@@ -4,13 +4,24 @@ Une collection des fichiers créés pour le rapport de recherche que nous avons 
 
 ## Python
 
+### Génération d'images
+
 En utilisant le module `matplotlib.pyplot`, on peut afficher un array de pixels colorés selon la fonction `julia()` définie dans le fichier `julia.py`.
 Le module `tqdm` est importé pour avoir une barre de progression lors de l'exportation d'une image.
+
+Pour les installer avec `pip` : 
+
+```bat
+python -m pip install -U pip
+python -m pip install -U matplotlib
+python -m pip install -U tqdm
+```
+
 
 Les paramètres disponibles à l'utilisateur sont modifiables dans le fichier `settings.json` (car c'est très pratique de stocker et modifier des données dans un fichier `json`).
 
 ---
-### Explication des paramètres
+**_Explication des paramètres_**
 
 L'image est en résolution de $N \times N$, donc l'utilisateur peut bien sûr modifier le paramètre `N`.
 
@@ -31,6 +42,44 @@ Par défaut, le fichier affiche des ensembles de Julia pour des fonctions de la 
 
 ![](https://github.com/ChrisMzz/julia/blob/main/python/dump/c=(0.285+0.01j)_N=4096_it=40_thr=500_l=10_lf=2_o=2.png)
 
+### Génération de sons
+
+En utilisant le module `scipy.io.wavfile` on peut exporter un signal numérique sous format audio `WAVE`. 
+
+Pour installer `scipy` avec `pip` : 
+```bat
+python -m pip install -U scipy
+```
+
+Pour une fonction méromorphe $f$, on définit la suite $(z_n)_{n \in \mathbb{N}}$ par récurrence de la façon suivante :
+$$z_{n+1} = f(z_n)$$
+On paramétrise une courbe $\gamma : [0,1] \to \C$ et on définit deux ensembles $Z_0$ et $Z$ de la façon suivante : 
+$$Z_0 = \lbrace \gamma(t), \quad \forall t \in [0,1] \rbrace$$
+$$Z = \left\lbrace \sup_{\lvert z_n \rvert < s}{z_n}, \quad \forall z_0 \in Z_0 \right\rbrace$$
+pour un seuil limite $s \in \R$ choisi.
+
+On définit la fonction $f$ et la courbe $\gamma$ avec `f` et `gamma` dans le fichier `julia_sound.py`. 
+On définit $Z$ par `iters`, où on entre précisément :
+```
+iters = [julia_keep_iter(gamma(i), f, s)[-2] for i in np.arange(0,1,1/16384)]
+```
+où `s` représente le seuil limite $s$ (et 16384 peut être un autre nombre tant qu'il est assez élevé)
+
+On peut ensuite traiter l'ensemble `iters` comme on veut pour obtenir des signaux différents.
+
+Pour enregistrer une liste `xlist` contenant un signal (liste de valeurs), on utilise :
+```
+x = np.array(xlist)
+wavefile.write('nom_de_fichier.wav', fs, x)
+```
+où `fs` est la fréquence d'échantillonage.
+Il est conseillé de prendre une fréquence d'échantillonage de 44100.
+
+---
+
+On peut obtenir des résultats intéressants avec cette implémentation, comme l'exemple ci-dessous d'une paramétrisation $\gamma(t) = \frac{\sin(4 \pi t)}{2} + i \sin(2 \pi t)$ sur les ensembles de Julia et Fatou de $f(z) = z^2 + 0.277+0.01i$ :
+
+![](https://github.com/ChrisMzz/julia/blob/main/sounds/hourglass/x(0.277+0.01j)withsound.png)
 
 ## GeoGebra
 
@@ -47,8 +96,8 @@ Grâce au script-fu, c'était possible d'écrire un script en Scheme qui peut ex
 La librairie `PIL` peut être installée avec pip : 
 
 ```bat
-python3 -m pip install --upgrade pip
-python3 -m pip install --upgrade Pillow
+python -m pip install -U pip
+python -m pip install -U Pillow
 ```
 
 ### Ajouter un script sur GIMP
