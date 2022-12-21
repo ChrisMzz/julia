@@ -57,7 +57,7 @@ Les images et scripts ont été écrits pour GIMP 2.10.20.
 
 
 Si vous avez installé GIMP 2.0 et choisi le répertoire d'installation par défaut, rendez-vous dans `C:\Program Files\GIMP 2\share\gimp\2.0\scripts`.
-Si vous avez installé GIMP 2.0 dans un autre répertoire, rendez-vous dans ce répertoire puis \share\gimp\2.0\scripts`.
+Si vous avez installé GIMP 2.0 dans un autre répertoire, rendez-vous dans ce répertoire puis `\share\gimp\2.0\scripts`.
 
 Copiez les fichiers `julia-incr.scm`, `julia-zoom.scm`, `julia-iter.scm`, et tout autre script que vous voulez rajouter dedans.
 
