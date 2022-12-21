@@ -53,10 +53,10 @@ python -m pip install -U scipy
 
 Pour une fonction méromorphe $f$, on définit la suite $(z_n)_{n \in \mathbb{N}}$ par récurrence de la façon suivante :
 $$z_{n+1} = f(z_n)$$
-On paramétrise une courbe $\gamma : [0,1] \to \C$ et on définit deux ensembles $Z_0$ et $Z$ de la façon suivante : 
+On paramétrise une courbe $\gamma : [0,1] \to \mathbb{C}$ et on définit deux ensembles $Z_0$ et $Z$ de la façon suivante : 
 $$Z_0 = \lbrace \gamma(t), \quad \forall t \in [0,1] \rbrace$$
 $$Z = \left\lbrace \sup_{\lvert z_n \rvert < s}{z_n}, \quad \forall z_0 \in Z_0 \right\rbrace$$
-pour un seuil limite $s \in \R$ choisi.
+pour un seuil limite $s \in \mathbb{R}$ choisi.
 
 On définit la fonction $f$ et la courbe $\gamma$ avec `f` et `gamma` dans le fichier `julia_sound.py`. 
 On définit $Z$ par `iters`, où on entre précisément :
