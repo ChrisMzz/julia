@@ -60,7 +60,7 @@ pour un seuil limite $s \in \mathbb{R}$ choisi.
 
 On définit la fonction $f$ et la courbe $\gamma$ avec `f` et `gamma` dans le fichier `julia_sound.py`. 
 On définit $Z$ par `iters`, où on entre précisément :
-```
+```py
 iters = [julia_keep_iter(gamma(i), f, s)[-2] for i in np.arange(0,1,1/16384)]
 ```
 où `s` représente le seuil limite $s$ (et 16384 peut être un autre nombre tant qu'il est assez élevé)
@@ -68,7 +68,7 @@ où `s` représente le seuil limite $s$ (et 16384 peut être un autre nombre tan
 On peut ensuite traiter l'ensemble `iters` comme on veut pour obtenir des signaux différents.
 
 Pour enregistrer une liste `xlist` contenant un signal (liste de valeurs), on utilise :
-```
+```py
 x = np.array(xlist)
 wavefile.write('nom_de_fichier.wav', fs, x)
 ```
